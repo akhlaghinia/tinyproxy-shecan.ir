@@ -1,0 +1,11 @@
+tinyproxy:
+  privileged: true
+  build: .
+  #image: ubuntu
+  ports:
+    - "8889:8889"
+  dns:
+    - 185.51.200.2
+    - 178.22.122.100
+  restart: always
+  command: bash -c "route add -net 192.168.0.0/16 gw 172.17.0.1 dev eth0 && service tinyproxy start && tail -f /dev/null"
